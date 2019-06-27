@@ -41,7 +41,7 @@ namespace SwapAPI.Branch
 
                 using (SqlConnection connection = new SqlConnection(str))
                 {
-                    string text = @"SELECT R.UserID, R.ShiftID, R.Comment, R.Urgent, U.Firstname, U.Position, S.startTime, S.endTime, S.Ver " +
+                    string text = @"SELECT R.UserID, R.ShiftID, R.Comment, R.Urgent, U.Firstname, U.email, U.Position, S.startTime, S.endTime, S.Ver " +
                                     "FROM Requests R " +
                                     "INNER JOIN Users U ON R.UserID = U.UserID " +
                                     "INNER JOIN Shifts S ON R.ShiftID = S.ShiftID " +                            
@@ -68,6 +68,7 @@ namespace SwapAPI.Branch
                                 ShiftID = oReader["ShiftID"].ToString(),
                                 Comment = oReader["Comment"].ToString(),
                                 Urgent = (bool)oReader["Urgent"],
+                                email = oReader["email"].ToString(),
                                 Firstname = oReader["Firstname"].ToString(),
                                 Position = oReader["Position"].ToString(),
                                 startTime = oReader["startTime"].ToString(),
@@ -94,6 +95,7 @@ namespace SwapAPI.Branch
         {
             public string UserID { get; set; }
             public string ShiftID { get; set; }
+            public string email { get; set; }
             public string Comment { get; set; }
             public Boolean Urgent { get; set; }
             public string Firstname { get; set; }
